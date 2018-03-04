@@ -67,7 +67,8 @@ def disconnect_request():
 
 @socketio.on('disconnect', namespace=namespace)
 def test_disconnect():
-	del clippies[request.sid]
+	if request.sid in clippies:
+		del clippies[request.sid]
 	print('Client disconnected', request.sid)
 
 @socketio.on('answer', namespace=namespace)

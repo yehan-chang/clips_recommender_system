@@ -1,0 +1,32 @@
+# OS generated files #
+######################
+.DS_Store
+thumbs.db
+Thumbs.db
+
+# python generated files #
+##########################
+*.pyc
+
+# jupyter generated files #
+##########################
+.ipynb_checkpoints/
+
+# misc files #
+##########################
+*.ffs_db
+.vagrant/
+*.sublime-workspace
+
+# config files #
+##########################
+
+# project specific files #
+##########################
+
+*.pid
+*.ttc
+*.ttf
+*.log
+*.pkl
+*.pkl.*
