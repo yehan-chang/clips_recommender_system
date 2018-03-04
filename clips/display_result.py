@@ -47,8 +47,9 @@ def processFinal(final, dbname, socket, sid):
 		arr = [(i, getValue(i)) for i in arr]
 		if excludeZero:
 			arr = filterTuples(arr, 0)
-		arr.sort(key=itemgetter(0))
-		arr.sort(key=itemgetter(1), reverse=True)
+		# arr.sort(key=itemgetter(0))
+		# arr.sort(key=itemgetter(1), reverse=True)
+		arr.sort(key=itemgetter(1, 0), reverse=True)
 		return arr
 
 	district = "location_area"
@@ -125,6 +126,7 @@ def processFinal(final, dbname, socket, sid):
 	else:
 		prox_order_query = ", ".join("macro_{a} DESC, micro_{a} DESC".format(a=a) for a,b in amenities)
 	order_queries.append(prox_order_query)
+	order_queries.append("""level DESC""")
 	query = """
 		SELECT level, unit, block, address, project, price, level_type, room_type, location_area, unit_direction
 		FROM {dbname}
