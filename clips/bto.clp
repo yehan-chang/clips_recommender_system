@@ -596,7 +596,8 @@ No Preferences"))
 	))
 
 	(rule (if maxPriceTagCase is 6) (
-		then number-of-rooms is 5-room with certainty 0.7
+		then number-of-rooms is 4-room with certainty 0.2 and
+		number-of-rooms is 5-room with certainty 0.7
 	))	
 
 	(rule (if married is yes and wParents is yes and maxPriceTagCase is 3) (
