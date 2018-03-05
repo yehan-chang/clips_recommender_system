@@ -128,7 +128,7 @@ def processFinal(final, dbname, socket, sid):
 	order_queries.append(prox_order_query)
 	order_queries.append("""level DESC""")
 	query = """
-		SELECT level, unit, block, address, project, price, level_type, room_type, location_area, unit_direction
+		SELECT project, address, block, level, unit, price, room_type, unit_direction, floor_area, completion_date
 		FROM {dbname}
 		WHERE booked = 0
 		AND price <= :budget
@@ -198,7 +198,8 @@ def processFinal(final, dbname, socket, sid):
 	result2 = df2.to_json(orient='split')
 	result2 = json.loads(result2)
 	result2["table_name"] = "visTable"
-	header = """More units for top result ({} Units for Block {} in Project {}):
+	header = """Alternatives which may interest you (based on top result)
+		{} Units for Block {} in Project {}:
 		<span class="unitAvailable">Available</span> <span class="unitBooked">Booked</span>""".format(room_typeD, blockD, projectD)
 	socket.emit('alert', {'data': header}, namespace=namespace, room=sid)
 	socket.emit('show_table', result2, namespace=namespace, room=sid)
