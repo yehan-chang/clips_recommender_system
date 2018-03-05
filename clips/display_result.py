@@ -122,9 +122,9 @@ def processFinal(final, dbname, socket, sid):
 	if no_west_sun_pref:
 		order_queries.insert(-1 if swap_misc_order else len(order_queries), """(CASE WHEN west_sun = 'No' THEN 1 ELSE 0 END) DESC""")
 	if district:
-		prox_order_query = ", ".join("micro_{} DESC".format(a) for a,b in amenities)
+		prox_order_query = ", ".join("micro_{} ASC".format(a) for a,b in amenities)
 	else:
-		prox_order_query = ", ".join("macro_{a} DESC, micro_{a} DESC".format(a=a) for a,b in amenities)
+		prox_order_query = ", ".join("macro_{a} ASC, micro_{a} ASC".format(a=a) for a,b in amenities)
 	order_queries.append(prox_order_query)
 	order_queries.append("""level DESC""")
 	query = """
