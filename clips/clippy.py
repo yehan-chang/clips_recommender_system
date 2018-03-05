@@ -1,6 +1,6 @@
 #!/usr/bin/env python
-import gevent
-import imp
+import eventlet as eventlib
+eventlib.monkey_patch()
 import clips
 
 namespace = "/"
@@ -78,12 +78,12 @@ class Clippy:
 	def clips_debug(self, message):
 		print(message)
 		self.socket.emit('debug', {'data': message}, namespace=namespace, room=self.sid)
-		gevent.sleep(.01)
+		eventlib.sleep(.01)
 
 	def clips_alert(self, message):
 		print(message)
 		self.socket.emit('alert', {'data': message}, namespace=namespace, room=self.sid)
-		gevent.sleep(.01)
+		eventlib.sleep(.01)
 
 	def clips_prompt(self, message, options):
 		print(message)
@@ -91,7 +91,7 @@ class Clippy:
 		self.socket.emit('prompt', {'data': message, 'options': [str(i) for i in options]}, namespace=namespace, room=self.sid)
 		self.ta.clearAns()
 		while not self.ta.hasAns():
-			gevent.sleep(1)
+			eventlib.sleep(1)
 		user_input = self.ta.getAns()
 		try:
 			int(user_input)
@@ -106,7 +106,7 @@ class Clippy:
 		self.socket.emit('prompt2', {'data': message, 'options': zipped}, namespace=namespace, room=self.sid)
 		self.ta.clearAns()
 		while not self.ta.hasAns():
-			gevent.sleep(1)
+			eventlib.sleep(1)
 		user_input = self.ta.getAns()
 		try:
 			int(user_input)
@@ -120,6 +120,7 @@ class Clippy:
 		self.final = message
 
 	def run(self):
+		eventlib.sleep(.01) # necessary with eventlet or first question won't appear (too soon after connect)
 		self.clipsEnv.Reset()
 		self.clipsEnv.Run()
 		DestroyEnvironment(self.clipsEnv)
