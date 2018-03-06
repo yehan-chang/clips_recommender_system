@@ -4,39 +4,28 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>BTO Recommender System</title>
-	<!--
-	<link rel="stylesheet" href="{{ url_for('static',filename='reset.min.css') }}">
-	<link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
-	<link rel="stylesheet" href="{{ url_for('static',filename='animate.min.css') }}">
-	<link rel="stylesheet" href="{{ url_for('static',filename='jquery.dataTables.min.css') }}">
-	<link rel="stylesheet" href="{{ url_for('static',filename='responsive.dataTables.min.css') }}">
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-	<script type="text/javascript" src="{{ url_for('static',filename='jquery-3.2.1.slim.min.js') }}"></script>
-	<script type="text/javascript" src="{{ url_for('static',filename='jquery.dataTables.min.js') }}"></script>
-	<script type="text/javascript" src="{{ url_for('static',filename='dataTables.responsive.min.js') }}"></script>
-	<script type="text/javascript" src="{{ url_for('static',filename='socket.io.min.js') }}"></script>
-	-->
+	
 	<link rel="stylesheet" href="{{ url_for('static',filename='reset.min.css') }}">
 	<link rel="stylesheet" href="{{ url_for('static',filename='style2.css') }}">
 	<link rel="stylesheet" href="{{ url_for('static',filename='animate.min.css') }}">
 	<link rel="stylesheet" href="{{ url_for('static',filename='jquery.dataTables.min.css') }}">
 	<link rel="stylesheet" href="{{ url_for('static',filename='responsive.dataTables.min.css') }}">
-	<link rel="stylesheet" href="../static/bootstrap.min.css">
+	<link rel="stylesheet" href="{{ url_for('static',filename='bootstrap.min.css') }}">
 
 	
-	<link rel="stylesheet" href="../static/font-awesome.min.css">
+	<link rel="stylesheet" href="{{ url_for('static',filename='font-awesome.min.css') }}">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700,800,900" rel="stylesheet">
 
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+	<link rel="stylesheet" href="{{ url_for('static',filename='materialize.min.css') }}">
 	
-          <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="{{ url_for('static',filename='jquery-3.2.1.min.js') }}"></script>
 	
 	<script type="text/javascript" src="{{ url_for('static',filename='jquery.dataTables.min.js') }}"></script>
 	<script type="text/javascript" src="{{ url_for('static',filename='dataTables.responsive.min.js') }}"></script>
 
-<script type="text/javascript" src="{{ url_for('static',filename='socket.io.min.js') }}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>	
+	<script type="text/javascript" src="{{ url_for('static',filename='socket.io.min.js') }}"></script>
+	<script src="{{ url_for('static',filename='materialize.min.js') }}"></script>		
 	
 			<script type="text/javascript">
 		namespace = '/';
@@ -175,16 +164,16 @@
 				table.addClass("animated " + animIn);
 				if (table_name == "resultTable") {
 					var columnsOpt = [
-						{ title: "Project" },
-						{ title: "Address" },
-						{ title: "Block" },
 						{ title: "Level" },
 						{ title: "Unit" },
+						{ title: "Block" },
+						{ title: "Address" },
+						{ title: "Project" },
 						{ title: "Price" },
+						{ title: "Level Type" },
 						{ title: "Room Type" },
-						{ title: "Direction" },
-						{ title: "Floor Area" },
-						{ title: "Completion Date" }
+						{ title: "Location" },
+						{ title: "Direction" }
 					];
 				} else {
 					var colWidth = Math.floor(100 / columns.length) + "%";
@@ -243,49 +232,13 @@
 			});
 
 		});
-
-		function directQueryPage() {
-			$("#home").addClass('hide');
-			$("#container").removeClass('hide');
-			$("#container").addClass("animated fadeIn");
-			
-		}
 	</script>
 </head>
 
 
 <body>
 
-<div id="home" class="container">
-      <div class="row">
-        <div class="col-lg-5">
-          <div class="text">
-            <h1 class="animated fadeInUp">Welcome</h1>
-            <p class="animated fadeInUp">HDB BTO Recommender System</p>
-			<p id="sub-text" class="animated fadeInUp">Your trusted advisor to BTO units</p>
-            <a href="#" onclick="directQueryPage()" class="btn btn-secondary btn-round animated fadeInUp waves-effect waves-light">Get Started</a>
-          </div>
-        </div>
-        <div class="col-lg-7">
-          <div class="box box-9 animated zoomIn" style="z-index: 2;"></div>
-          <div class="box box-8 animated zoomIn" style="z-index: 2;"></div>
-          <div class="box box-6 animated zoomIn" style="z-index: 2;"></div>
-          <div class="box box-4 animated zoomIn" style="z-index: 2;"></div>
-          <div class="box box-3 animated zoomIn" style="z-index: 2;"></div>
-          <div class="box box-2 animated zoomIn" style="z-index: 2;"></div>
-          <div class="box box-1 animated zoomIn" style="z-index: 2;"><i class="fa fa-home"></i></div>
-          <div class="box box-5 animated zoomIn" style="z-index: 2;"><i class="fa fa-child"></i></div>
-          <div class="box box-7 animated zoomIn" style="z-index: 2;"><i class="fa fa-bus"></i></div>
-          <div class="box box-10 animated zoomIn" style="z-index: 2;"><i class="fa fa-compass"></i></div>
-          <div class="img-wrapper animated-img animated lightSpeedIn" style="z-index: 1;">
-            <img src="{{ url_for('static',filename='house.jpg') }}" alt="">
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-<div id="container" class="container hide">
+<div id="container" class="container">
 <div class="row">
 	<div class="col s12 m6">
           <div class="card blue-grey lighten-1">
