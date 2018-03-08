@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>BTO Recommender System</title>
-	
+
 	<link rel="stylesheet" href="{{ url_for('static',filename='reset.min.css') }}">
 	<link rel="stylesheet" href="{{ url_for('static',filename='style2.css') }}">
 	<link rel="stylesheet" href="{{ url_for('static',filename='animate.min.css') }}">
@@ -12,25 +12,25 @@
 	<link rel="stylesheet" href="{{ url_for('static',filename='responsive.dataTables.min.css') }}">
 	<link rel="stylesheet" href="{{ url_for('static',filename='bootstrap.min.css') }}">
 
-	
+
 	<link rel="stylesheet" href="{{ url_for('static',filename='font-awesome.min.css') }}">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700,800,900" rel="stylesheet">
 
 	<link rel="stylesheet" href="{{ url_for('static',filename='materialize.min.css') }}">
-	
+
         <script type="text/javascript" src="{{ url_for('static',filename='jquery-3.2.1.min.js') }}"></script>
-	
+
 	<script type="text/javascript" src="{{ url_for('static',filename='jquery.dataTables.min.js') }}"></script>
 	<script type="text/javascript" src="{{ url_for('static',filename='dataTables.responsive.min.js') }}"></script>
 
 	<script type="text/javascript" src="{{ url_for('static',filename='socket.io.min.js') }}"></script>
-	<script src="{{ url_for('static',filename='materialize.min.js') }}"></script>		
-	
+	<script src="{{ url_for('static',filename='materialize.min.js') }}"></script>
+
 			<script type="text/javascript">
 		namespace = '/';
 		var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port + namespace);
-		
+
 		$.fn.extend({
 			animateCss: function(animationName, callback) {
 				var animationEnd = (function(el) {
@@ -86,14 +86,14 @@
 
 		function refreshSession() {
 			$("#space").empty();
-			
+
 		}
 
 		$(document).ready(function() {
 			var winHeight = $(window).height();
 			var spaceHeight = winHeight * 0.9;
 			var spaceOffset = winHeight * 0.05;
-			
+
 			refreshSession(); // for when browser refreshes
 
 			socket.on('connect', function() {
@@ -220,7 +220,7 @@
 				}
 				$('#'+table_name).DataTable(dtOptions);
 			});
-			
+
 			socket.on('show_reset_button', function(msg) {
 				var resetButton = $("<div/>", {
 					"class": "linkButton",
@@ -240,6 +240,11 @@
 
 <div id="container" class="container">
 <div class="row">
+	<div id="top-frame" class="col s12 m6">
+		<img id="top-image" src="{{ url_for('static',filename='house.jpg') }}" alt="">
+	</div>
+</div>
+<div class="row">
 	<div class="col s12 m6">
           <div class="card blue-grey lighten-1">
 <div id="preloader" class="progress hide">
@@ -253,7 +258,7 @@
 	<div id="space">
 	</div>
             </div>
-            
+
           </div>
         </div>
 
