@@ -17,6 +17,7 @@ Thumbs.db
 *.ffs_db
 .vagrant/
 *.sublime-workspace
+*.bak
 
 # config files #
 ##########################
