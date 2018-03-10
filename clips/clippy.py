@@ -120,7 +120,7 @@ class Clippy:
 		self.final = message
 
 	def run(self):
-		eventlib.sleep(.01) # necessary with eventlet or first question won't appear (too soon after connect)
+		eventlib.sleep(1) # necessary with eventlet or first question won't appear (too soon after connect)
 		self.clipsEnv.Reset()
 		self.clipsEnv.Run()
 		DestroyEnvironment(self.clipsEnv)

@@ -224,7 +224,7 @@
 			socket.on('show_reset_button', function(msg) {
 				var resetButton = $("<div/>", {
 					"class": "linkButton",
-					"html": "<button id='restartButt' class='btn btn-primary' onclick='location.reload();'>Try Again</button>",
+					"html": "<button id='restartButt' class='btn btn-primary' onclick=\"location.href='" + window.location.pathname + "'\">Try Again</button>",
 				});
 				resetButton.appendTo("#space");
 				resetButton.animateCss(animIn, function() {
