@@ -11,7 +11,7 @@ sudo pip install flask flask-socketio eventlet simplejson pandas
 
 ```
 sudo apt-get install git
-git clone https://yehanx@bitbucket.org/yehanx/bto-recommender-system.git
+git clone https://github.com/yehan-chang/clips_recommender_system.git
 cd bto-recommender-system/clips
 python app.py
 ```
